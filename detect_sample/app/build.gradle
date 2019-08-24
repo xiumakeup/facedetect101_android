@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias '666666'
+            keyPassword '666666'
+            storePassword '666666'
+            storeFile file('ynsign.jks')
+        }
+    }
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.xiusdk.facedetect"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.config
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name:'ynfacedetect', ext:'aar')
+
+}
